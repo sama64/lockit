@@ -23,3 +23,6 @@ def generate_key(password, salt=os.urandom(16)):
 
     return key, salt
 
+
+key, salt = generate_key("wsad8546", b'vWANQGcU3mn_KaWQbeIcKEA2J1sifMIgvpnk0GqS_gI=')
+print(key)

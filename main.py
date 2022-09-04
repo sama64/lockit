@@ -8,18 +8,29 @@
 
 import sys
 from encrypt import encrypt
+from decrypt import decrypt
 
 def run():
     #If first parameter is encrypt
     if sys.argv[1] == "encrypt":
         file = sys.argv[2]
-        password = input("Select a password for file encryption:  ")
+        password = input("Select a password for encryption:  ")
         #encrypt file with password
-        encrypt(password)
+        encrypt(password, file)
 
     #If first parameter is decrypt
     if sys.argv[1] == "decrypt":
-        print("desencripte tu archivo je")
+        file = sys.argv[2]
+        password = input("Select a password for decryption:  ")
+        salt_file = sys.argv[3]
+        #decrypt file with password
+        decrypt(file, password, salt_file)
+        ####Code below for future implementation of automatic salt finder
+        # if len(sys.argv) >= 4:
+        #     decrypt(file, password, sys.argv[3])
+        # else:
+        #     decrypt(file, password)
+
 
 
 if __name__ == '__main__':

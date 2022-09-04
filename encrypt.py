@@ -17,15 +17,20 @@ def encrypt(password, file):
     contents_encrypted = Fernet(key).encrypt(contents)
 
     #creates a directory for encrypted file and salt
-    os.mkdir("encrypted_passwords")
+    try: 
+        os.mkdir("encrypted_passwords")
+    except:
+        print("encrypted_passwords directory already exists. Overwriting it.")
 
     #writes salt
-    with open("./encrypted_passwords/salt.txt", "wb") as file:
+    with open("./encrypted_passwords/salt", "wb") as file:
         file.write(salt)
     
     #writes encrypted passwords
-    with open(f"./encrypted_passwords/{file}", "wb") as file:
+    print(file)
+    with open(f"./encrypted_passwords/passwords", "wb") as file:
         file.write(contents_encrypted)
 
-    print(f"Done. Encrypted contents in {os.getcwd}/encrypted_passwords.")
+    #inform user
+    print(f"Done. Encrypted contents in {os.getcwd()}/encrypted_passwords")
     print("Remember to keep the salt in the same directory to decrypt later.")
