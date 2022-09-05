@@ -7,6 +7,7 @@
 #Creates a folder called "encrypted passwords" with the encrypted content
 
 import sys
+import os
 from encrypt import encrypt
 from decrypt import decrypt
 
@@ -22,14 +23,18 @@ def run():
     if sys.argv[1] == "decrypt":
         file = sys.argv[2]
         password = input("Select a password for decryption:  ")
-        salt_file = sys.argv[3]
-        #decrypt file with password
-        decrypt(file, password, salt_file)
-        ####Code below for future implementation of automatic salt finder
-        # if len(sys.argv) >= 4:
-        #     decrypt(file, password, sys.argv[3])
-        # else:
-        #     decrypt(file, password)
+
+        #if user especified salt, use. If not, try default
+        if len(sys.argv) >= 4:
+            decrypt(file, password, sys.argv[3])
+        else:
+            #looking for salt
+            print(f"Salt may be in: {os.path.dirname(file)}/salt")
+            try:
+                file_dir = os.path.dirname(file)
+                decrypt(file, password, f"{file_dir}/salt")
+            except:
+                print("Salt not found. Especify salt path")
 
 
 

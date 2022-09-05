@@ -8,10 +8,12 @@ This python script encrypts/decrypts your passwords saved in a .txt format using
 
 ## Usage:
 Receives the parameters encrypt or decrypt, and following the file.
-When decrypting it is necessary to add the salt as the last parameter (It will be automatic later). The salt is saved in the encrypted_passwords folder.
+When decrypting the salt file can be specified as the last parameter. The salt is saved in the encrypted_passwords folder.
 
 ## Examples:
 #### Encryption
 `python3 main.py encrypt mypasswords.txt`
 #### Decryption
+`python3 main.py decrypt mypasswords`
+Specify salt
 `python3 main.py decrypt mypasswords salt`
